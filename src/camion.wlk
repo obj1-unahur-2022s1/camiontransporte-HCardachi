@@ -17,8 +17,8 @@ object camion {
  //method elDeNivel(nivel) = carga.find( {c => c.nivelPeligrosity() == nivel} ) 
  method elDeNivel(nivel)= carga.filter({c => c.nivelDePeligrosidad() == nivel}).first()  
  
- //method pesoTotal() = tara + carga.sum( {c => c.peso() } )
-   method pesoTotal()= self.tara() + carga.sum({c => c.peso() }) 
+method pesoTotal() = tara + carga.sum( {c => c.peso() } )
+
  
  method excedidoDePeso() = self.pesoTotal() > 2500
  
