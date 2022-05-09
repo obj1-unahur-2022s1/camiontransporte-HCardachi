@@ -1,2 +1,67 @@
 import camion.*
 import cosas.*
+
+
+/*Hay que hacer un pequeño test para cada una de las siguientes cosas: paquete de ladrillos, batería antiaérea, contenedor portuario y embalaje de seguridad. 
+Al embalaje ponerle adentro los residuos radioactivos con 30 kg de peso. 
+Al contenedor, dos o tres cosas a elección. 
+*/
+
+test "Paquete ladrillos"{
+	paqueteLadrillos.cantidad(10)
+	paqueteLadrillos.peligrosity()
+    assert.equals(20, paqueteLadrillos.peso())
+}
+
+test "Batería Anti"{
+	bateriaAntiaerea.misiles(true)
+    assert.equals(300, bateriaAntiaerea.peso())
+    assert.equals(100, bateriaAntiaerea.nivelPeligrosity())
+    bateriaAntiaerea.misiles(false)
+    assert.equals(200, bateriaAntiaerea.peso())
+    assert.equals(0, bateriaAntiaerea.nivelPeligrosity())
+}
+
+test "Embalaje"{
+	embalajeSeguridad.contiene(residuosRadioactivos)
+    residuosRadioactivos.peso(30)
+    assert.equals(30, embalajeSeguridad.peso())
+    assert.equals(100, embalajeSeguridad.nivelPeligrosity())
+ }
+
+test "Contenedor"{
+	contenedor.agregar(residuosRadioactivos)
+    residuosRadioactivos.peso(30)
+    contenedor.agregar(bumblebee)
+    contenedor.agregar(knightRider)
+    assert.equals(1430, contenedor.peso())
+    assert.equals(200, contenedor.nivelPeligrosity())
+ }
+
+
+/* AUXILIARES
+ 
+test "Peso par" {
+    arena.peso(14)
+    paqueteLadrillos.cantidad(1)
+    camion.cargar(arena)
+    camion.cargar(paqueteLadrillos)
+    assert.equals(true, camion.todoPesoPar())
+}
+
+test "Peso par (error intencional)" {
+    arena.peso(13)
+    paqueteLadrillos.cantidad(1)
+    camion.cargar(arena)
+    camion.cargar(paqueteLadrillos)
+    assert.equals(true, camion.todoPesoPar())
+}
+
+test "Peso impar" {
+    arena.peso(13)
+    paqueteLadrillos.cantidad(1)
+    camion.cargar(arena)
+    camion.cargar(paqueteLadrillos)
+    assert.equals(false, camion.todoPesoPar())
+}
+*/
