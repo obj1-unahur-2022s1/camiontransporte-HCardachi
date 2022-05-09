@@ -6,23 +6,28 @@ object camion {
  
  method cargar(cosa) {carga.add(cosa)}
  method descargar(cosa){carga.remove(cosa)}
- method todoPesoPar() {
- 	//si el peso de cada uno de los objetos cargados es un número par
- 	return carga.forEach(carga.peso.even())
- }
- method hayAlgunoQuePesa(peso)= carga.any().peso() == peso  	
+ //method todoPesoPar() {}
  
- method elDeNivel(nivel) = carga.find( {c => c.nivelPeligrosity() == nivel} ) 
+//si el peso de cada uno de los objetos cargados es un número par 
+ method todoPesoPar() = carga.all({c => c.peso() % 2 == 0 })
+
+ //method hayAlgunoQuePesa(peso)= carga.any().peso() == peso  
+ method hayAlgunoQuePesa(peso) = carga.any({c => c.peso()== peso}) 	
  
- method pesoTotal() = tara + carga.sum( {c => c.peso() } )
+ //method elDeNivel(nivel) = carga.find( {c => c.nivelPeligrosity() == nivel} ) 
+ method elDeNivel(nivel)= carga.filter({c => c.nivelDePeligrosidad() == nivel}).first()  
+ 
+ //method pesoTotal() = tara + carga.sum( {c => c.peso() } )
+   method pesoTotal()= self.tara() + carga.sum({c => c.peso() }) 
  
  method excedidoDePeso() = self.pesoTotal() > 2500
  
- method objetosQueSuperanPeligrosidad(nivel) = carga.filter( {c => c.nivelPeligrosity() == nivel} )
+ method objetosQueSuperanPeligrosidad(nivel) = carga.filter( {c => c.nivelPeligrosity() > nivel} )
  
  method objetosMasPeligrososQue(cosa) = carga.filter( {c => c.nivelPeligrosity() > cosa.nivelPeligrosity() } )
  
  method puedeCircularEnRuta(nivelMaximoPeligrosidad) = !self.excedidoDePeso() and !carga.any( {c => c.nivelPeligrosity() > nivelMaximoPeligrosidad} )	 
+
 
 // ** AGREGADOS ENUNCIADO **
 //(min, max)`: indica si el peso de alguna de las cosas que tiene el camión está en ese intervalo; 

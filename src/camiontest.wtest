@@ -26,11 +26,15 @@ test "Testeo de camión"{
 	//-----------------------------------------------	
 	
 	assert.equals(true, camion.todoPesoPar())
-	assert.equals(true, camion.hayAlgunoQuePesa(300))
-	assert.equals("bateriaAntiaerea", camion.elDeNivel(100))
+	assert.that(camion.hayAlgunoQuePesa(300))
+	assert.equals(bateriaAntiaerea, camion.elDeNivel(100))
 	assert.equals(2410, camion.pesoTotal())
-	assert.equals(false,camion.excedidoDePeso())
-	assert.equals("bateriaAntiaerea",camion.objetosQueSuperanPeligrosidad(100))
+	assert.equals(false,camion.excedidoDePeso()) // assert.notThat(camion.excedidoDePeso())
+	assert.equals(bateriaAntiaerea, camion.objetosQueSuperanPeligrosidad(100))
+	assert.equals(bumblebee ,  camion.cosaMasPesada())	
+    assert.that(camion.tieneAlgoQuePesaEntre(50, 200))
+    assert.that(camion.pesos()== [800 , 150 , 300 , 160])
+	
 	}
 /*
 	paqueteLadrillos.cantidad(10)
