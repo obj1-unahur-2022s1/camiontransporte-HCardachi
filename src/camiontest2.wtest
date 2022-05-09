@@ -1,0 +1,24 @@
+import camion2.*
+import cosas2.*
+
+
+
+describe "knightRider" {
+	
+	test "total bultos" {
+		assert.equals(1, knightRider.totalBultos())
+	}
+	
+}
+
+describe "bumblebee" {
+	
+	test "bultos" {
+		assert.equals(2, bumblebee.totalBultos())
+	}
+	
+	test "Que pasa" {
+		camion.cargar(bumblebee)
+		assert.notThat(bumblebee.auto())
+	}
+}

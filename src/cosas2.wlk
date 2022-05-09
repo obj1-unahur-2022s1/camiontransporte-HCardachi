@@ -2,6 +2,9 @@ object knightRider {
 	var property peso = 500
 	var property peligrosity = 10
 	method nivelPeligrosity() = peligrosity
+	
+	method totalBultos() = 1
+	method sufrirConsecuencia() {}
 }
 
 
@@ -15,6 +18,8 @@ object bumblebee {
 		 else 
 		 	return (peligrosity * 2) 
 	}
+	method totalBultos() = 2
+	method sufrirConsecuencia() { auto = false }
 }
 
 object paqueteLadrillos{
@@ -23,6 +28,18 @@ object paqueteLadrillos{
 	var property cantidad = 0
 	method nivelPeligrosity() = peligrosity
 	method peso() = (pesou * cantidad)
+	
+	method totalBultos() { 
+		var bultos = 0
+		
+		if (cantidad <= 100) {bultos = 1} 
+		if (cantidad.between(101,300)) {bultos = 2}
+		if (cantidad >= 301) {bultos = 3}
+		
+		return bultos
+		}
+		
+	method sufrirConsecuencia() { cantidad += 12 }
 }
 
 
@@ -30,6 +47,9 @@ object arena {
 	var property peso = 0
 	var property peligrosity = 1
 	method nivelPeligrosity() = peligrosity
+	
+	method totalBultos() = 1
+	method sufrirConsecuencia() { peso += 20 }
 }
 
 object bateriaAntiaerea {
@@ -49,6 +69,14 @@ object bateriaAntiaerea {
 		else 
 			return 0
 	}
+	method totalBultos() { 
+		var totalBultos = 0
+		if (misiles) {totalBultos = 2} 
+		else {totalBultos = 1}
+		  return totalBultos
+		}
+		
+	method sufrirConsecuencia() { self.misiles(true) }
 }
 
 object contenedor {
@@ -68,13 +96,21 @@ var aux
  		return aux.nivelPeligrosity()
  		}
  	}
+ 	method totalBultos() = 1 + contiene.sum({ c => c.totalBultos() })
+	
+	method sufrirConsecuencia() {
+		contiene.forEach({ c => c.sufrirConsecuencia() })
+	}
 }
 
 object residuosRadioactivos {
 	var property peso = 0
 	const  peligrosity = 200
 	method nivelPeligrosity() = peligrosity
+	method totalBultos() = 1
+	method sufrirConsecuencia() {peso += 15}
 }
+
 
 object embalajeSeguridad {
 var property contiene 
@@ -88,7 +124,8 @@ method peso() {
  	}
  	
  method nivelPeligrosity() = contiene.nivelPeligrosity() / 2
-
+ method totalBultos() = 2
+ method sufrirConsecuencia() {}
 
 
 }
