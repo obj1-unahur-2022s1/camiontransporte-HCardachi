@@ -4,7 +4,8 @@ object camion {
  const tara = 1000
  var carga = []
  
- method cargar(cosa) {carga.add(cosa)}
+ //method cargar(cosa) {carga.add(cosa)}
+ method cargar(cosa) { carga.add(cosa)  cosa.sufrirConsecuencia()}
  method descargar(cosa){carga.remove(cosa)}
  method todoPesoPar() {
  	//si el peso de cada uno de los objetos cargados es un número par
