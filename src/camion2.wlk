@@ -1,4 +1,4 @@
-import cosas.*
+import cosas2.*
 
 object camion {
  const tara = 1000
@@ -8,7 +8,7 @@ object camion {
  method descargar(cosa){carga.remove(cosa)}
  method todoPesoPar() {
  	//si el peso de cada uno de los objetos cargados es un número par
- 	return carga.forEach(carga.peso.even())
+ 	return carga.forEach(carga.peso()%2 == 0)
  }
  method hayAlgunoQuePesa(peso)= carga.any().peso() == peso  	
  
